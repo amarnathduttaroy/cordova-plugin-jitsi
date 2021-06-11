@@ -10,13 +10,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RTCMacros.h"
-#import "RTCMediaSource.h"
+#import <WebRTC/RTCMacros.h>
+#import <WebRTC/RTCMediaSource.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 RTC_OBJC_EXPORT
-@interface RTCAudioSource : RTCMediaSource
+@interface RTC_OBJC_TYPE (RTCAudioSource) : RTC_OBJC_TYPE(RTCMediaSource)
 
 - (instancetype)init NS_UNAVAILABLE;
 

@@ -10,35 +10,30 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RTCCodecSpecificInfo.h"
-#import "RTCEncodedImage.h"
-#import "RTCMacros.h"
-#import "RTCVideoEncoderSettings.h"
-#import "RTCVideoFrame.h"
+#import <WebRTC/RTCCodecSpecificInfo.h>
+#import <WebRTC/RTCEncodedImage.h>
+#import <WebRTC/RTCMacros.h>
+#import <WebRTC/RTCVideoEncoderSettings.h>
+#import <WebRTC/RTCVideoFrame.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /** Callback block for decoder. */
-typedef void (^RTCVideoDecoderCallback)(RTCVideoFrame *frame);
+typedef void (^RTCVideoDecoderCallback)(RTC_OBJC_TYPE(RTCVideoFrame) * frame);
 
 /** Protocol for decoder implementations. */
 RTC_OBJC_EXPORT
-@protocol RTCVideoDecoder <NSObject>
+@protocol RTC_OBJC_TYPE
+(RTCVideoDecoder)<NSObject>
 
-- (void)setCallback:(RTCVideoDecoderCallback)callback;
-- (NSInteger)startDecodeWithSettings:(RTCVideoEncoderSettings *)settings
-                       numberOfCores:(int)numberOfCores
-    DEPRECATED_MSG_ATTRIBUTE("use startDecodeWithNumberOfCores: instead");
+    - (void)setCallback : (RTCVideoDecoderCallback)callback;
+- (NSInteger)startDecodeWithNumberOfCores:(int)numberOfCores;
 - (NSInteger)releaseDecoder;
-- (NSInteger)decode:(RTCEncodedImage *)encodedImage
+- (NSInteger)decode:(RTC_OBJC_TYPE(RTCEncodedImage) *)encodedImage
         missingFrames:(BOOL)missingFrames
-    codecSpecificInfo:(nullable id<RTCCodecSpecificInfo>)info
+    codecSpecificInfo:(nullable id<RTC_OBJC_TYPE(RTCCodecSpecificInfo)>)info
          renderTimeMs:(int64_t)renderTimeMs;
 - (NSString *)implementationName;
-
-// TODO(andersc): Make non-optional when `startDecodeWithSettings:numberOfCores:` is removed.
-@optional
-- (NSInteger)startDecodeWithNumberOfCores:(int)numberOfCores;
 
 @end
 

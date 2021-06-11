@@ -10,12 +10,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RTCMacros.h"
+#import <WebRTC/RTCMacros.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 RTC_OBJC_EXPORT
-@interface RTCRtpHeaderExtension : NSObject
+@interface RTC_OBJC_TYPE (RTCRtpHeaderExtension) : NSObject
 
 /** The URI of the RTP header extension, as defined in RFC5285. */
 @property(nonatomic, readonly, copy) NSString *uri;
